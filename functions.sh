@@ -3,8 +3,14 @@ pow() {
 echo $(($1**$2))
 }
 shortest() {
-shortestArg=$(echo "${@}" | awk '{split($0,str," "); for (i in str) {print length(str[i])}}' | sort -n | head -n1)
-echo "${@}" | awk -v shortest="$shortestArg" '{split($0,str," "); for (i in str) {if (length(str[i]) == shortest) {printf str[i]"\n"}}}'
+shortestArg=$(echo "${@}" | awk '{split($0,str," "); for (i in str) print length(str[i])}' | sort -n | head -n1)
+for i in "$@"
+ do
+  if [[ "${#i}" -eq "$shortestArg" ]]
+  then
+   echo "$i" 
+  fi
+ done
 }
 print_log() {
 echo $(date +[\%Y-\%m-\%d" "\%R]) $1
