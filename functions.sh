@@ -13,5 +13,5 @@ for i in "$@"
  done
 }
 print_log() {
-echo $(date +[\%Y-\%m-\%d" "\%R]) $1
+echo "$(date +[\%Y-\%m-\%d" "\%R]) $1"
 }
